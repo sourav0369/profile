@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sourav Pattanaik | Scientist Athlete Leader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Roboto+Mono&display=swap');
+        body { background-color: #000; color: #fff; font-family: 'Inter', sans-serif; cursor: crosshair; overflow-x: hidden; }
+        .mono { font-family: 'Roboto+Mono', monospace; }
+        .bento-grid { border-left: 1px solid #333; border-top: 1px solid #333; }
+        .bento-item { border-right: 1px solid #333; border-bottom: 1px solid #333; transition: all 0.5s ease; position: relative; background: #000; overflow: hidden; }
+        .bento-item:hover { background: rgba(255, 255, 255, 0.9); color: #000; }
+        .bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.2; filter: grayscale(100%); transition: 0.5s; z-index: 0; }
+        .bento-item:hover .bg-img { opacity: 0.1; filter: grayscale(0%); }
+        .content { position: relative; z-index: 10; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+        #canvas-container { position: fixed; top: 0; left: 0; z-index: -1; }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <main class="relative z-10 p-6 md:p-16">
+        <header class="mb-20">
+            <h1 class="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none">Scientist.<br>Athlete.<br>Leader.</h1>
+            <div class="mt-8 flex flex-wrap gap-4 mono text-[10px] uppercase opacity-60">
+                <span>[ NEST AIR 263 ]</span><span>[ GATE AIR 1173 ]</span><span>[ OJEE STATE RANK 3 ]</span><span>[ CGPA 8.37 ]</span>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 bento-grid">
+            <div class="md:col-span-2 aspect-video bento-item p-8">
+                <img src="sourav_photo.jpeg" class="bg-img">
+                <div class="content">
+                    <h2 class="text-4xl font-black uppercase">Sourav Pattanaik</h2>
+                    <p class="mono text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        5th Year Integrated M.Sc. Biology, NISER.<br>Minoring in Chemistry.
+                    </p>
+                </div>
+            </div>
+
+            <div class="aspect-square bento-item group p-8">
+                <img src="pipette.jpeg" class="bg-img">
+                <div class="content">
+                    <h3 class="text-xl font-bold uppercase">Master's Thesis</h3>
+                    <div class="opacity-0 group-hover:opacity-100 transition-opacity">
+                        <ul class="mono text-[10px] space-y-1">
+                            <li>— 97.3% Predictive Accuracy</li>
+                            <li>— 1.7M+ Molecules Screened</li>
+                            <li>— Dual-stimulus IDP carrier</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="aspect-square bento-item group p-8">
+                <img src="prize pic.jpg" class="bg-img">
+                <div class="content">
+                    <h3 class="text-xl font-bold uppercase">Scholastic</h3>
+                    <div class="opacity-0 group-hover:opacity-100 transition-opacity">
+                        <ul class="mono text-[10px] space-y-1">
+                            <li>— DAE-DISHA Scholar</li>
+                            <li>— IAS Summer Fellow</li>
+                            <li>— Ideathon Finalist (IISER Pune)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 aspect-[2/1] bento-item group p-8">
+                <img src="badminton.jpeg" class="bg-img">
+                <div class="content">
+                    <h3 class="text-4xl font-black uppercase">Athletics</h3>
+                    <div class="opacity-0 group-hover:opacity-100 transition-opacity">
+                        <ul class="mono text-xs space-y-1">
+                            <li>— Basketball: IISM 2023</li>
+                            <li>— Badminton & Football Medals</li>
+                            <li>— Inter-batch Champion 2024</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 aspect-[2/1] bento-item group p-8">
+                <div class="content">
+                    <h3 class="text-4xl font-black uppercase">Leadership</h3>
+                    <div class="opacity-0 group-hover:opacity-100 transition-opacity">
+                        <ul class="mono text-xs space-y-1">
+                            <li>— Gym Treasurer: Managed ₹50,000 budget</li>
+                            <li>— Student Rep: Disciplinary Action Committee</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+        
+        const points = [];
+        for (let i = 0; i < 1500; i++) {
+            points.push(new THREE.Vector3(THREE.MathUtils.randFloatSpread(1500), THREE.MathUtils.randFloatSpread(1500), THREE.MathUtils.randFloatSpread(1500)));
+        }
+        const particles = new THREE.Points(new THREE.BufferGeometry().setFromPoints(points), new THREE.PointsMaterial({color: 0x333333, size: 2}));
+        scene.add(particles);
+        
+        camera.position.z = 700;
+        function animate() { 
+            requestAnimationFrame(animate); 
+            particles.rotation.y += 0.0008; 
+            renderer.render(scene, camera); 
+        }
+        animate();
+        
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
