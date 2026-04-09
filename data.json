@@ -1,0 +1,81 @@
+{
+  "profile": {
+    "name": "Sourav Pattanaik",
+    "headline": "Scientist. Athlete. Leader.",
+    "institution": "National Institute of Science Education and Research (NISER)",
+    "location": "Jatni, India"
+  },
+  "stats": [
+    { "label": "NEST AIR", "value": "263" },
+    { "label": "GATE AIR", "value": "1173" },
+    { "label": "Last SGPA", "value": "9.82" },
+    { "label": "OUAT AIR", "value": "81" }
+  ],
+  "pillars": [
+    {
+      "id": "scientist",
+      "category": "Science",
+      "image": "pipette.jpeg",
+      "items": [
+        {
+          "title": "Master's Thesis",
+          "details": [
+            "Designed dual-stimulus drug carrier using IDPs",
+            "97.3% Random Forest model accuracy",
+            "Screened 1.7M+ molecules in PubChem"
+          ]
+        },
+        {
+          "title": "Langya Virus Publication",
+          "details": [
+            "Computational design of multi-epitope vaccine",
+            "Published in Letters in Drug Design & Discovery",
+            "Accepted in 2026"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "athlete",
+      "category": "Athletics",
+      "image": "badminton.jpeg",
+      "items": [
+        {
+          "title": "Varsity Basketball",
+          "details": [
+            "Represented NISER at IISM 2023",
+            "Inter-batch Champion 2024"
+          ]
+        },
+        {
+          "title": "Multi-Sport Medals",
+          "details": [
+            "Bronze Medalist: Badminton (2025)",
+            "Bronze Medalist: Football (2024)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leader",
+      "category": "Leadership",
+      "image": "prize pic.jpg",
+      "items": [
+        {
+          "title": "Gym Treasurer",
+          "details": [
+            "Managed ₹50,000 budget for NISER Gym Club",
+            "Coordinated Power-lifting events"
+          ]
+        },
+        {
+          "title": "Student Representative",
+          "details": [
+            "Disciplinary Action Committee (DAC) Member",
+            "Adjudicated campus safety and policy cases"
+          ]
+        }
+      ]
+    }
+  ]
+}
