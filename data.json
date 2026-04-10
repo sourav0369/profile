@@ -13,21 +13,21 @@
       "title": "Education",
       "image": "pipette.jpeg",
       "bullets": [
-        "Integrated M.Sc. Biology, Minor Chemistry, NISER (2021-2026) [cite: 1, 10]",
-        "CGPA: 8.37 | Last SGPA: 9.82 [cite: 1, 11]",
-        "12th Boards: 94.6% | 10th Boards: 93.2% [cite: 1, 12, 13]",
-        "NEST AIR 263, GATE AIR 1173, OJEE State Rank 3 [cite: 1, 65, 66]"
+        "Integrated M.Sc. Biology, Minor Chemistry, NISER (2021-2026)",
+        "CGPA: 8.37 | Last semester SGPA: 9.82",
+        "12th Boards: 94.6% | 10th Boards: 93.2%",
+        "NEST AIR 263, GATE AIR 1173, OJEE State Rank 3"
       ]
     },
     {
       "id": "research",
       "title": "Research",
-      "image": "Screenshot 2026-04-09 194049.png",
+      "image": "Paper.png",
       "bullets": [
-        "Multi-epitope vaccine design against Langya Virus [cite: 1, 15, 38]",
-        "Co-first Author (Letters in Drug Design & Discovery, 2026) [cite: 1, 14, 41]",
-        "Master's Thesis: In silico drug discovery for Testicular Cancer [cite: 1, 18, 21]",
-        "Developed 97.3% predictive Random Forest model for IDPs [cite: 1, 23]"
+        "Multi-epitope vaccine design against Langya Virus",
+        "Co-first Author (Letters in Drug Design & Discovery, 2026)",
+        "Master's Thesis: In silico drug discovery for Testicular Cancer",
+        "Developed 97.3% predictive Random Forest model for IDPs"
       ]
     },
     {
@@ -35,9 +35,9 @@
       "title": "Sports",
       "image": "badminton.jpeg",
       "bullets": [
-        "Varsity Basketball (IISM 2023) [cite: 1, 78]",
-        "Inter-batch Basketball Champion (2024) [cite: 1, 78]",
-        "Bronze Medals: Badminton (2025) and Football (2024) [cite: 1, 79]"
+        "Varsity Basketball (IISM 2023)",
+        "Inter-batch Basketball Champion (2024)",
+        "Bronze Medals: Badminton (2025) and Football (2024)"
       ]
     },
     {
@@ -45,25 +45,8 @@
       "title": "Impact",
       "image": "prize pic.jpg",
       "bullets": [
-        "Gym Treasurer (2024-2025): Managed ₹50,000 budget [cite: 1, 73]",
-        "Student Representative: Disciplinary Action Committee (DAC) [cite: 1, 75]",
-        "DAE-DISHA Scholar (2021-2026) [cite: 1, 68]",
-        "Finalist, BENSPARK Ideathon, IISER Pune [cite: 1, 70]"
+        "Gym Treasurer (2024-2025): Managed ₹50,000 budget",
+        "Student Representative: Disciplinary Action Committee (DAC)",
+        "DAE-DISHA Scholar (2021-2026)",
+        "Finalist, BENSPARK Ideathon, IISER Pune"
       ]
-    }
-  ],
-  "blogs": {
-    "academics": [
-      "Current focus on integrating network-based drug discovery for oncological targets. [cite: 1, 21]",
-      "Utilization of Molecular Dynamics (MD) and Protein-DNA Docking. [cite: 1, 26]"
-    ],
-    "sports": [
-      "Analysis of competitive basketball performance and team dynamics. [cite: 1, 78]",
-      "Maintaining athletic rigor alongside Integrated M.Sc. curriculum. [cite: 1, 78]"
-    ],
-    "cocurricular": [
-      "Managing university gym finances and power-lifting events. [cite: 1, 74]",
-      "Campus policy making and student adjudication within the DAC. [cite: 1, 76]"
-    ]
-  }
-}
