@@ -56,33 +56,43 @@
 "blogs": {
   "academics": [
     {
-      "title": "Master's Thesis Defense",
-      "image": "pipette.jpeg",
-      "text": "Defending my research on stimulus-responsive drug carriers. It was the culmination of two years of work integrating bioinformatics with wet-lab validation."
+      "title": "Attended PK Parija Lecture on Cancer Metastasis by Dr. Rajendra Achyut Badwe",
+      "image": "PKparija4.jpeg",
+      "text": "Did you know that removing metastasis can actually facilitate micrometastasis? Got the Opportunity to be a part of an amazing lecture where Dr. Badwe adressed the metastasis research through a Clinician's perspective."
     },
     {
-      "title": "Summer at ICMR-NIREH",
-      "image": "Paper.png",
-      "text": "My internship focused on genomic biomarkers. Working with Dr. Sindhuprava Rana opened my eyes to the power of precision medicine."
+      "title": "9th Semester Poster Presentation",
+      "image": "Posterpres.jpeg",
+      "text": "If you can't explain it to a four year old, you don't know it yourself!! It was an amazing experience to showcase the MSc research project in front of faculty members from different departments and lovely juniors. "
+   },
+    {
+      "title": "36th Mid year Meeting at Indian Academy of Sciences",
+      "image": "IASmeeting.jpeg",
+      "text": "Finally, got the opportunity to meet a living legend!! During my research project at RRMCH(Bengaluru), I was invited to the mid year meeting at IISC, where I got the opportunity to interact with Dr. A S Kiran Kumar (former Chairperson ISRO), while networking with amazing researchers."
     }
   ],
   "sports": [
     {
-      "title": "IISM Basketball 2023",
+      "title": "Interbatch Badminton 2025",
       "image": "badminton.jpeg",
-      "text": "Representing NISER on the national stage. The intensity of the competition and the team spirit were unforgettable."
+      "text": "Last win of the year, won third prize in the Interbatch Badminton tournament December 2025. Attacking isn't always the best strategy against Pros!!"
     },
     {
-      "title": "Inter-batch Champions",
-      "image": "badminton.jpeg",
-      "text": "Securing the gold for our batch. Athletics has always been my way of staying grounded amidst rigorous academic schedules."
+      "title": "Powerlifting Competetion",
+      "image": "PLift.jpeg",
+      "text": "Its that time of the year!! Organized Power lifting competetion in the Institute as a core committee member, while also motivating new gym buddies(juniors). Hopefully they show up regularly"
     }
   ],
   "cocurricular": [
     {
-      "title": "Gym Club Leadership",
-      "image": "prize pic.jpg",
-      "text": "As Treasurer, I managed budgets and organized power-lifting events. It taught me the importance of financial accountability and team coordination."
+      "title": "Group Dance Winners 2025",
+      "image": "dancegroup.jpg",
+      "text": "First time it felt nice, so we had to do it twice!! Won the Interbatch Group Dance Competetion. The memories we make during practice sessions are surely going to stay with me till the end."
+    },
+    {
+      "title": "Slogan Writing Winner 2025",
+      "image": "Slogan.jpg",
+      "text": "Writing slogans has become a part of me. It just genuinely feels good to spread awareness and positivity through slogans."
     }
   ]
  }
