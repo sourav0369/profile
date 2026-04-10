@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,122 +7,157 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Roboto+Mono&display=swap');
-        body { background-color: #000; color: #fff; font-family: 'Inter', sans-serif; cursor: crosshair; overflow-x: hidden; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Roboto+Mono&display=swap');
+        body { font-family: 'Inter', sans-serif; cursor: crosshair; background-color: #000; overflow-x: hidden; color: white; }
         .mono { font-family: 'Roboto+Mono', monospace; }
-        .bento-grid { border-left: 1px solid #333; border-top: 1px solid #333; }
-        .bento-item { border-right: 1px solid #333; border-bottom: 1px solid #333; transition: all 0.5s ease; position: relative; background: #000; overflow: hidden; }
-        .bento-item:hover { background: rgba(255, 255, 255, 0.9); color: #000; }
-        .bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.2; filter: grayscale(100%); transition: 0.5s; z-index: 0; }
-        .bento-item:hover .bg-img { opacity: 0.1; filter: grayscale(0%); }
-        .content { position: relative; z-index: 10; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
-        #canvas-container { position: fixed; top: 0; left: 0; z-index: -1; }
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
+        /* Professional Toggle Nav */
+        nav button.active { border-color: #fff; color: #fff; opacity: 1; }
+        /* 3D Bento Rotation */
+        .bento-perspective { perspective: 1000px; }
+        .bento-card { width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; border: 1px solid rgba(255,255,255,0.1); background: #000; overflow: hidden; }
+        .bento-perspective:hover .bento-card { transform: rotateY(180deg); }
+        .bento-front, .bento-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; flex-direction: column; justify-content: space-between; p-8; }
+        .bento-front { z-index: 2; transform: rotateY(0deg); }
+        .bento-back { z-index: 1; transform: rotateY(180deg); background: rgba(255,255,255,0.95); color: black; p: 8; overflow-y: auto; }
+        .tile-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; filter: grayscale(100%); transition: opacity 0.5s; }
+        .bento-perspective:hover .tile-bg-img { opacity: 0; }
+        /* Vertical Accordion Blog */
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1); opacity: 0; }
+        .accordion-item.active .accordion-content { max-height: 500px; opacity: 1; }
+        .contact-form input, .contact-form textarea { background: #111; border: 1px solid #333; color: white; transition: border-color 0.3s; }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: #fff; outline: none; }
     </style>
 </head>
 <body>
     <div id="canvas-container"></div>
-    <main class="relative z-10 p-6 md:p-16">
-        <header class="mb-20">
-            <h1 class="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none">Scientist.<br>Athlete.<br>Leader.</h1>
-            <div class="mt-8 flex flex-wrap gap-4 mono text-[10px] uppercase opacity-60">
-                <span>[ NEST AIR 263 ]</span><span>[ GATE AIR 1173 ]</span><span>[ OJEE STATE RANK 3 ]</span><span>[ CGPA 8.37 ]</span>
-            </div>
-        </header>
-
-        <div class="grid grid-cols-1 md:grid-cols-4 bento-grid">
-            <div class="md:col-span-2 aspect-video bento-item p-8">
-                <img src="sourav_photo.jpeg" class="bg-img">
-                <div class="content">
-                    <h2 class="text-4xl font-black uppercase">Sourav Pattanaik</h2>
-                    <p class="mono text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                        5th Year Integrated M.Sc. Biology, NISER.<br>Minoring in Chemistry.
-                    </p>
-                </div>
-            </div>
-
-            <div class="aspect-square bento-item group p-8">
-                <img src="pipette.jpeg" class="bg-img">
-                <div class="content">
-                    <h3 class="text-xl font-bold uppercase">Master's Thesis</h3>
-                    <div class="opacity-0 group-hover:opacity-100 transition-opacity">
-                        <ul class="mono text-[10px] space-y-1">
-                            <li>— 97.3% Predictive Accuracy</li>
-                            <li>— 1.7M+ Molecules Screened</li>
-                            <li>— Dual-stimulus IDP carrier</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="aspect-square bento-item group p-8">
-                <img src="prize pic.jpg" class="bg-img">
-                <div class="content">
-                    <h3 class="text-xl font-bold uppercase">Scholastic</h3>
-                    <div class="opacity-0 group-hover:opacity-100 transition-opacity">
-                        <ul class="mono text-[10px] space-y-1">
-                            <li>— DAE-DISHA Scholar</li>
-                            <li>— IAS Summer Fellow</li>
-                            <li>— Ideathon Finalist (IISER Pune)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="md:col-span-2 aspect-[2/1] bento-item group p-8">
-                <img src="badminton.jpeg" class="bg-img">
-                <div class="content">
-                    <h3 class="text-4xl font-black uppercase">Athletics</h3>
-                    <div class="opacity-0 group-hover:opacity-100 transition-opacity">
-                        <ul class="mono text-xs space-y-1">
-                            <li>— Basketball: IISM 2023</li>
-                            <li>— Badminton & Football Medals</li>
-                            <li>— Inter-batch Champion 2024</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="md:col-span-2 aspect-[2/1] bento-item group p-8">
-                <div class="content">
-                    <h3 class="text-4xl font-black uppercase">Leadership</h3>
-                    <div class="opacity-0 group-hover:opacity-100 transition-opacity">
-                        <ul class="mono text-xs space-y-1">
-                            <li>— Gym Treasurer: Managed ₹50,000 budget</li>
-                            <li>— Student Rep: Disciplinary Action Committee</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <main id="app" class="relative z-10 max-w-7xl mx-auto px-6 py-12">
+        <div class="text-center py-20">Loading Data...</div>
     </main>
 
     <script>
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('canvas-container').appendChild(renderer.domElement);
-        
-        const points = [];
-        for (let i = 0; i < 1500; i++) {
-            points.push(new THREE.Vector3(THREE.MathUtils.randFloatSpread(1500), THREE.MathUtils.randFloatSpread(1500), THREE.MathUtils.randFloatSpread(1500)));
+        // --- DATA FETCHING AND UI RENDERING ---
+        async function fetchPortfolioData() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                renderUI(data);
+                initThreeJS();
+            } catch (error) {
+                console.error("Error loading JSON data:", error);
+                document.getElementById('app').innerHTML = '<div class="text-center py-20 text-red-500">Error loading data. Check data.json formatting.</div>';
+            }
         }
-        const particles = new THREE.Points(new THREE.BufferGeometry().setFromPoints(points), new THREE.PointsMaterial({color: 0x333333, size: 2}));
-        scene.add(particles);
-        
-        camera.position.z = 700;
-        function animate() { 
-            requestAnimationFrame(animate); 
-            particles.rotation.y += 0.0008; 
-            renderer.render(scene, camera); 
+
+        function renderUI(data) {
+            const app = document.getElementById('app');
+            app.innerHTML = `
+                <section id="identity" class="min-h-screen flex flex-col items-center justify-center text-center">
+                    <img src="${data.profile.photo}" alt="${data.profile.name}" class="w-48 h-48 rounded-full border-4 border-white mb-8 object-cover">
+                    <h1 class="text-7xl md:text-8xl font-black uppercase tracking-tighter leading-none">${data.profile.name}</h1>
+                    <p class="mono text-sm mt-6 opacity-60 uppercase mb-4">[ ${data.profile.tagline} ]</p>
+                    <p class="text-lg opacity-80 max-w-lg mb-12">${data.profile.subTagline}</p>
+                    <div class="flex gap-4">
+                        <a href="${data.profile.downloadableCvUrl}" download class="mono border border-white px-6 py-3 uppercase hover:bg-white hover:text-black transition">Download CV</a>
+                        <a href="mailto:${data.profile.email}" class="mono border border-white px-6 py-3 uppercase hover:bg-white hover:text-black transition">Email Me</a>
+                    </div>
+                </section>
+
+                <section id="bento" class="min-h-screen py-24">
+                    <h2 class="text-5xl font-black uppercase tracking-tighter text-center mb-16">More About Me</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bento-perspective">
+                        ${Object.values(data.pillars).map(pillar => `
+                            <div class="aspect-square bento-perspective">
+                                <div class="bento-card">
+                                    <div class="bento-front">
+                                        <img src="${pillar.image}" class="tile-bg-img">
+                                        <h3 class="text-4xl font-black uppercase relative z-10 p-8">${pillar.title}</h3>
+                                    </div>
+                                    <div class="bento-back p-8">
+                                        <ul class="mono text-xs space-y-3">
+                                            ${pillar.bullets.map(bullet => `<li>— ${bullet}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </section>
+
+                <section id="blog" class="min-h-screen py-24">
+                    <h2 class="text-5xl font-black uppercase tracking-tighter text-center mb-16">Writings</h2>
+                    <div class="space-y-4 max-w-4xl mx-auto">
+                        ${data.accordionSections.map(section => `
+                            <div class="accordion-item border border-neutral-800" onclick="toggleAccordion(this)">
+                                <button class="flex justify-between w-full p-6 text-xl font-bold uppercase tracking-tight mono">
+                                    ${section.title} <span class="mono opacity-60">[+]</span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-8 border-t border-neutral-800 text-neutral-300 space-y-4">
+                                        ${section.entries.map(entry => `<p>${entry}</p>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </section>
+
+                <section id="contact" class="min-h-screen py-24 contact-form">
+                    <h2 class="text-5xl font-black uppercase tracking-tighter text-center mb-16">Connect</h2>
+                    <form action="https://formspree.io/f/YOUR_UNIQUE_FORM_ID" method="POST" class="max-w-2xl mx-auto space-y-6 mono uppercase text-sm">
+                        <input type="text" name="name" placeholder="Your Name" required class="w-full p-4">
+                        <input type="email" name="email" placeholder="Your Email" required class="w-full p-4">
+                        <textarea name="message" placeholder="Type Your Message..." rows="6" required class="w-full p-4"></textarea>
+                        <button type="submit" class="w-full border border-white p-4 font-bold uppercase hover:bg-white hover:text-black transition">Send</button>
+                    </form>
+                </section>
+            `;
         }
-        animate();
-        
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
+
+        // --- INTERACTIVITY LOGIC ---
+        function toggleAccordion(element) {
+            document.querySelectorAll('.accordion-item').forEach(item => {
+                if (item !== element) item.classList.remove('active');
+            });
+            element.classList.toggle('active');
+        }
+
+        // --- THREE.JS GALAXY/PARTICLE BACKGROUND ---
+        function initThreeJS() {
+            const container = document.getElementById('canvas-container');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
-        });
+            container.appendChild(renderer.domElement);
+
+            const points = [];
+            for (let i = 0; i < 2000; i++) {
+                points.push(new THREE.Vector3(THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloatSpread(1000)));
+            }
+            const geometry = new THREE.BufferGeometry().setFromPoints(points);
+            const material = new THREE.PointsMaterial({ color: 0x333333, size: 2 });
+            const particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+
+            camera.position.z = 500;
+            let mouseX = 0, mouseY = 0;
+            document.addEventListener('mousemove', (e) => { mouseX = (e.clientX - window.innerWidth / 2) / 100; mouseY = (e.clientY - window.innerHeight / 2) / 100; });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                particles.rotation.y += 0.0005;
+                camera.position.x += (mouseX - camera.position.x) * 0.05;
+                camera.position.y += (-mouseY - camera.position.y) * 0.05;
+                camera.lookAt(scene.position);
+                renderer.render(scene, camera);
+            }
+            animate();
+            window.addEventListener('resize', () => { camera.aspect = window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+        }
+
+        // Start the app
+        fetchPortfolioData();
     </script>
 </body>
 </html>
