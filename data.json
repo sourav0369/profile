@@ -1,7 +1,7 @@
 {
   "profile": {
     "name": "Sourav Pattanaik",
-    "tagline": "Scientist. Athlete. Leader.",
+    "tagline": "Aspiring Researcher. Sports Enthusiast. Leader.",
     "subTagline": "I use the lens of bioinformatics to observe Biology.",
     "cvFilename": "Sourav-CV.pdf",
     "email": "sourav.pattanaik@niser.ac.in",
@@ -50,3 +50,20 @@
         "DAE-DISHA Scholar (2021-2026)",
         "Finalist, BENSPARK Ideathon, IISER Pune"
       ]
+    }
+  ],
+  "blogs": {
+    "academics": [
+      "Focusing on the integration of network-based drug discovery and stimulus-responsive drug carriers.",
+      "Utilizing computational techniques like CG-Molecular Dynamics and Protein-DNA Docking."
+    ],
+    "sports": [
+      "Insights into varsity basketball competition at IISM 2023.",
+      "Maintaining high academic standards (9.82 SGPA) while excelling in competitive sports."
+    ],
+    "cocurricular": [
+      "Managing financial responsibilities and campus policy-making.",
+      "Engaging in translational research ideation through platforms like BENSPARK."
+    ]
+  }
+}
