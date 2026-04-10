@@ -11,21 +11,20 @@
         body { background-color: #000; color: #fff; cursor: crosshair; font-family: 'EB Garamond', serif; overflow-x: hidden; }
         #canvas-container { position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; }
         
-        /* Navigation Icons */
         nav button { opacity: 0.5; transition: 0.3s; font-family: sans-serif; letter-spacing: 0.2em; }
         nav button.active { opacity: 1; border-bottom: 2px solid white; }
 
         /* Concave Circular Layout */
         .profile-circle {
             float: left;
-            width: 300px;
-            height: 300px;
+            width: 280px;
+            height: 280px;
             shape-outside: circle(50%);
             border-radius: 50%;
-            margin-right: 40px;
+            margin-right: 50px;
             margin-bottom: 20px;
             object-fit: cover;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.15);
         }
 
         /* Independent Tile Flipping */
@@ -35,12 +34,11 @@
         .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border: 1px solid #222; overflow: hidden; }
         .card-back { transform: rotateY(180deg); background: #fff; color: #000; padding: 25px; display: flex; flex-direction: column; justify-content: center; }
 
-        /* Blog Accordion */
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
         .accordion-active .accordion-content { max-height: 500px; padding: 20px 0; }
         
-        .fade-in { animation: fadeIn 1s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .fade-in { animation: fadeIn 1.2s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -52,7 +50,7 @@
         <button onclick="showSection('contact')" id="btn-contact" class="uppercase text-[10px]">Contact</button>
     </nav>
 
-    <main id="main-content" class="pt-32 px-6 max-w-6xl mx-auto min-h-screen"></main>
+    <main id="main-content" class="pt-40 px-6 max-w-6xl mx-auto min-h-screen"></main>
 
     <script>
         let portfolioData = null;
@@ -65,7 +63,7 @@
                 showSection('home');
                 startParticles();
             } catch (e) {
-                document.getElementById('main-content').innerHTML = `<div class="text-center py-20">Error: Please ensure data.json is in the root folder.</div>`;
+                document.getElementById('main-content').innerHTML = `<div class="text-center py-20">Error loading data.json. Check file placement.</div>`;
             }
         }
 
@@ -77,13 +75,14 @@
             if (id === 'home') {
                 main.innerHTML = `
                 <div class="fade-in">
-                    <div class="mb-24 block overflow-hidden">
-                        <img src="${portfolioData.profile.photo}" class="profile-circle grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl">
-                        <h1 class="text-6xl md:text-8xl font-bold uppercase tracking-tighter leading-none mb-6">${portfolioData.profile.name}</h1>
-                        <p class="text-2xl italic opacity-90 mb-6 leading-relaxed">
-                            "${portfolioData.profile.subTagline}" 
-                            As a scholar at NISER, I focus on the intersection of computational drug discovery 
-                            and biological network modeling to solve oncological challenges.
+                    <div class="mb-32 block overflow-hidden">
+                        <img src="${portfolioData.profile.photo}" class="profile-circle grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl">
+                        <h1 class="text-6xl md:text-8xl font-bold uppercase tracking-tighter leading-none mb-8">${portfolioData.profile.name}</h1>
+                        <p class="text-3xl italic opacity-95 mb-4 leading-snug">
+                            "${portfolioData.profile.subTagline}"
+                        </p>
+                        <p class="text-xl uppercase tracking-[0.2em] opacity-60 mb-10">
+                            Aspiring Researcher. Sports Enthusiast. Leader.
                         </p>
                         <div class="flex gap-4">
                             <a href="mailto:${portfolioData.profile.email}" class="border border-white/30 px-8 py-2 hover:bg-white hover:text-black transition uppercase text-[10px] tracking-widest">Email</a>
@@ -91,13 +90,13 @@
                         </div>
                     </div>
 
-                    <h2 class="text-center text-xs uppercase tracking-[0.5em] opacity-40 mb-12">Core Pillars</h2>
+                    <h2 class="text-center text-[10px] uppercase tracking-[0.6em] opacity-30 mb-12">Foundations</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-20">
                         ${portfolioData.pillars.map(p => `
                             <div class="card-container">
                                 <div class="card-inner">
                                     <div class="card-front">
-                                        <img src="${p.image}" class="w-full h-full object-cover opacity-40 grayscale">
+                                        <img src="${p.image}" class="w-full h-full object-cover opacity-30 grayscale">
                                         <div class="absolute bottom-6 left-6 text-xl font-bold uppercase tracking-widest">${p.title}</div>
                                     </div>
                                     <div class="card-back">
