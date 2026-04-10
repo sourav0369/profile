@@ -6,11 +6,14 @@
     <title>Sourav Pattanaik | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
     <style>
         body { background-color: #000; color: #fff; cursor: crosshair; font-family: 'EB Garamond', serif; overflow-x: hidden; }
         #canvas-container { position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; }
         
+        /* New Font for Name */
+        .name-brand { font-family: 'Playfair Display', serif; letter-spacing: -0.05em; }
+
         nav button { opacity: 0.5; transition: 0.3s; font-family: sans-serif; letter-spacing: 0.2em; }
         nav button.active { opacity: 1; border-bottom: 2px solid white; }
 
@@ -34,14 +37,14 @@
 
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
         .accordion-active .accordion-content { 
-            max-height: 80vh; 
+            max-height: 70vh; 
             overflow-y: auto; 
             padding: 40px 20px;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         .accordion-content::-webkit-scrollbar { width: 4px; }
-        .accordion-content::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        .accordion-content::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
         
         .fade-in { animation: fadeIn 1.2s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -52,7 +55,7 @@
     
     <nav class="fixed top-0 w-full z-50 flex justify-center gap-12 p-6 bg-black/80 backdrop-blur-md border-b border-white/10">
         <button onclick="showSection('home')" id="btn-home" class="active uppercase text-[10px]">Home</button>
-        <button onclick="showSection('blog')" id="btn-blog" class="uppercase text-[10px]">Blogs</button>
+        <button onclick="showSection('blog')" id="btn-blog" class="uppercase text-[10px]">Activities</button>
         <button onclick="showSection('contact')" id="btn-contact" class="uppercase text-[10px]">Contact</button>
     </nav>
 
@@ -69,7 +72,7 @@
                 showSection('home');
                 startParticles();
             } catch (e) {
-                document.getElementById('main-content').innerHTML = `<div class="text-center py-20">Error loading data.json. Check file placement.</div>`;
+                document.getElementById('main-content').innerHTML = `<div class="text-center py-20">Error loading data.json.</div>`;
             }
         }
 
@@ -82,8 +85,8 @@
                 main.innerHTML = `
                 <div class="fade-in">
                     <div class="mb-32 block overflow-hidden">
-                        <img src="${portfolioData.profile.photo}" class="profile-circle grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl">
-                        <h1 class="text-6xl md:text-8xl font-bold uppercase tracking-tighter leading-none mb-8">${portfolioData.profile.name}</h1>
+                        <img src="${portfolioData.profile.photo}" class="profile-circle grayscale hover:grayscale-0 transition-all duration-1000">
+                        <h1 class="name-brand text-7xl md:text-9xl font-black uppercase leading-none mb-8">${portfolioData.profile.name}</h1>
                         <p class="text-3xl italic opacity-95 mb-4 leading-snug">"${portfolioData.profile.subTagline}"</p>
                         <p class="text-xl uppercase tracking-[0.2em] opacity-60 mb-10">Aspiring Researcher. Sports Enthusiast. Leader.</p>
                         <div class="flex gap-4">
@@ -91,7 +94,10 @@
                             <a href="${portfolioData.profile.cvFilename}" download class="border border-white/30 px-8 py-2 hover:bg-white hover:text-black transition uppercase text-[10px] tracking-widest">Sourav-CV</a>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-20">
+                    
+                    <h2 class="text-2xl uppercase tracking-[0.4em] mb-12 border-b border-white/10 pb-4 inline-block">About Me</h2>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-24">
                         ${portfolioData.pillars.map(p => `
                             <div class="card-container">
                                 <div class="card-inner">
@@ -112,7 +118,7 @@
             } else if (id === 'blog') {
                 main.innerHTML = `
                 <div class="max-w-4xl mx-auto py-10 fade-in">
-                    <h2 class="text-4xl uppercase mb-16 text-center tracking-[0.3em] opacity-50 font-bold">Memories</h2>
+                    <h2 class="text-4xl uppercase mb-16 text-center tracking-[0.3em] opacity-50 font-bold">Activities</h2>
                     ${Object.keys(portfolioData.blogs).map(key => `
                         <div class="border border-white/10 bg-white/5 mb-6 group transition-all" onclick="this.classList.toggle('accordion-active')">
                             <div class="p-8 cursor-pointer flex justify-between items-center uppercase tracking-[0.2em] text-[10px] hover:bg-white/5 transition">
@@ -120,13 +126,13 @@
                             </div>
                             <div class="accordion-content">
                                 <div class="flex flex-col gap-12">
-                                    ${portfolioData.blogs[key].map((memory, index) => `
+                                    ${portfolioData.blogs[key].map((activity, index) => `
                                         <div class="flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-start gap-6 border-b border-white/5 pb-8 last:border-0">
-                                            <img src="${memory.image}" class="w-32 h-32 object-cover grayscale border border-white/10 flex-shrink-0 shadow-lg">
+                                            <img src="${activity.image}" class="w-32 h-32 object-cover grayscale border border-white/10 flex-shrink-0">
                                             <div class="flex-1 ${index % 2 === 0 ? 'text-left' : 'text-right'}">
-                                                <h3 class="text-xs font-bold uppercase mb-2 tracking-widest text-white/90">${memory.title}</h3>
-                                                <p class="italic opacity-70 leading-relaxed text-base" style="font-family: 'EB Garamond', serif;">
-                                                    ${memory.text}
+                                                <h3 class="text-xs font-bold uppercase mb-2 tracking-widest text-white/90">${activity.title}</h3>
+                                                <p class="italic opacity-70 leading-relaxed text-base">
+                                                    ${activity.text}
                                                 </p>
                                             </div>
                                         </div>
@@ -140,9 +146,9 @@
                 main.innerHTML = `
                 <div class="max-w-xl mx-auto py-10 text-center fade-in">
                     <h2 class="text-5xl uppercase mb-12 tracking-tighter">Get In Touch</h2>
-                    <form action="https://formspree.io/f/mbdpvyya" method="POST" class="space-y-6">
-                        <input name="email" type="email" placeholder="YOUR EMAIL" class="w-full bg-transparent border-b border-white/20 p-4 text-[10px] tracking-widest focus:border-white outline-none transition">
-                        <textarea name="message" placeholder="MESSAGE" class="w-full bg-transparent border-b border-white/20 p-4 text-[10px] tracking-widest h-32 focus:border-white outline-none transition"></textarea>
+                    <form action="https://formspree.io/f/YOUR_ID" method="POST" class="space-y-6">
+                        <input name="email" type="email" placeholder="YOUR EMAIL" class="w-full bg-transparent border-b border-white/20 p-4 text-[10px] tracking-widest outline-none">
+                        <textarea name="message" placeholder="MESSAGE" class="w-full bg-transparent border-b border-white/20 p-4 text-[10px] tracking-widest h-32 outline-none"></textarea>
                         <button class="w-full border border-white/20 py-5 uppercase text-[10px] tracking-[0.3em] hover:bg-white hover:text-black transition">Send Message</button>
                     </form>
                 </div>`;
