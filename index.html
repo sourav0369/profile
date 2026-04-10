@@ -3,161 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sourav Pattanaik | Scientist Athlete Leader</title>
+    <title>Sourav Pattanaik | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Roboto+Mono&display=swap');
-        body { font-family: 'Inter', sans-serif; cursor: crosshair; background-color: #000; overflow-x: hidden; color: white; }
-        .mono { font-family: 'Roboto+Mono', monospace; }
-        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
-        /* Professional Toggle Nav */
-        nav button.active { border-color: #fff; color: #fff; opacity: 1; }
-        /* 3D Bento Rotation */
-        .bento-perspective { perspective: 1000px; }
-        .bento-card { width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; border: 1px solid rgba(255,255,255,0.1); background: #000; overflow: hidden; }
-        .bento-perspective:hover .bento-card { transform: rotateY(180deg); }
-        .bento-front, .bento-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; flex-direction: column; justify-content: space-between; p-8; }
-        .bento-front { z-index: 2; transform: rotateY(0deg); }
-        .bento-back { z-index: 1; transform: rotateY(180deg); background: rgba(255,255,255,0.95); color: black; p: 8; overflow-y: auto; }
-        .tile-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; filter: grayscale(100%); transition: opacity 0.5s; }
-        .bento-perspective:hover .tile-bg-img { opacity: 0; }
-        /* Vertical Accordion Blog */
-        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1); opacity: 0; }
-        .accordion-item.active .accordion-content { max-height: 500px; opacity: 1; }
-        .contact-form input, .contact-form textarea { background: #111; border: 1px solid #333; color: white; transition: border-color 0.3s; }
-        .contact-form input:focus, .contact-form textarea:focus { border-color: #fff; outline: none; }
+        body { 
+            background-color: #000; color: #fff; cursor: crosshair; 
+            font-family: 'EB Garamond', Garamond, 'Times New Roman', serif; 
+        }
+        .section-hidden { display: none; }
+        #canvas-container { position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; }
+        
+        /* Navigation Icons */
+        nav button { opacity: 0.5; transition: 0.3s; }
+        nav button.active { opacity: 1; border-bottom: 2px solid white; }
+
+        /* Independent Tile Flipping Fix */
+        .card-container { perspective: 1000px; height: 350px; }
+        .card-inner { 
+            position: relative; width: 100%; height: 100%; 
+            transition: transform 0.6s; transform-style: preserve-3d; 
+        }
+        .card-container:hover .card-inner { transform: rotateY(180deg); }
+        .card-front, .card-back { 
+            position: absolute; width: 100%; height: 100%; 
+            backface-visibility: hidden; border: 1px solid #333; 
+        }
+        .card-back { transform: rotateY(180deg); background: white; color: black; padding: 20px; }
+        
+        /* Accordion Logic */
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .accordion-active .accordion-content { max-height: 300px; padding: 20px 0; }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="canvas-container"></div>
-    <main id="app" class="relative z-10 max-w-7xl mx-auto px-6 py-12">
-        <div class="text-center py-20">Loading Data...</div>
+
+    <nav class="fixed top-0 w-full z-50 flex justify-center gap-12 p-6 bg-black/50 backdrop-blur-md border-b border-white/10">
+        <button onclick="showSection('home')" id="btn-home" class="active uppercase tracking-widest text-xs">Home</button>
+        <button onclick="showSection('about')" id="btn-about" class="uppercase tracking-widest text-xs">About Me</button>
+        <button onclick="showSection('blog')" id="btn-blog" class="uppercase tracking-widest text-xs">Blogs</button>
+        <button onclick="showSection('contact')" id="btn-contact" class="uppercase tracking-widest text-xs">Contact</button>
+    </nav>
+
+    <main id="main-content" class="pt-24 px-6 max-w-6xl mx-auto">
+        <div id="loader" class="h-screen flex items-center justify-center italic">Loading Database...</div>
     </main>
 
     <script>
-        // --- DATA FETCHING AND UI RENDERING ---
-        async function fetchPortfolioData() {
+        let portfolioData = null;
+
+        async function init() {
             try {
-                const response = await fetch('data.json');
-                const data = await response.json();
-                renderUI(data);
-                initThreeJS();
-            } catch (error) {
-                console.error("Error loading JSON data:", error);
-                document.getElementById('app').innerHTML = '<div class="text-center py-20 text-red-500">Error loading data. Check data.json formatting.</div>';
-            }
+                const res = await fetch('data.json');
+                portfolioData = await res.json();
+                showSection('home');
+                startParticles();
+            } catch (e) { document.getElementById('main-content').innerHTML = "Error loading data.json"; }
         }
 
-        function renderUI(data) {
-            const app = document.getElementById('app');
-            app.innerHTML = `
-                <section id="identity" class="min-h-screen flex flex-col items-center justify-center text-center">
-                    <img src="${data.profile.photo}" alt="${data.profile.name}" class="w-48 h-48 rounded-full border-4 border-white mb-8 object-cover">
-                    <h1 class="text-7xl md:text-8xl font-black uppercase tracking-tighter leading-none">${data.profile.name}</h1>
-                    <p class="mono text-sm mt-6 opacity-60 uppercase mb-4">[ ${data.profile.tagline} ]</p>
-                    <p class="text-lg opacity-80 max-w-lg mb-12">${data.profile.subTagline}</p>
-                    <div class="flex gap-4">
-                        <a href="${data.profile.downloadableCvUrl}" download class="mono border border-white px-6 py-3 uppercase hover:bg-white hover:text-black transition">Download CV</a>
-                        <a href="mailto:${data.profile.email}" class="mono border border-white px-6 py-3 uppercase hover:bg-white hover:text-black transition">Email Me</a>
-                    </div>
-                </section>
+        function showSection(sectionId) {
+            // Update buttons
+            document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+            document.getElementById(`btn-${sectionId}`).classList.add('active');
 
-                <section id="bento" class="min-h-screen py-24">
-                    <h2 class="text-5xl font-black uppercase tracking-tighter text-center mb-16">More About Me</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bento-perspective">
-                        ${Object.values(data.pillars).map(pillar => `
-                            <div class="aspect-square bento-perspective">
-                                <div class="bento-card">
-                                    <div class="bento-front">
-                                        <img src="${pillar.image}" class="tile-bg-img">
-                                        <h3 class="text-4xl font-black uppercase relative z-10 p-8">${pillar.title}</h3>
+            const main = document.getElementById('main-content');
+            
+            if (sectionId === 'home') {
+                main.innerHTML = `
+                    <div class="flex flex-col md:flex-row items-center justify-between min-h-[80vh] gap-12">
+                        <img src="${portfolioData.profile.photo}" class="w-64 h-64 object-cover border border-white/20 shadow-2xl">
+                        <div class="flex-1 text-right">
+                            <h1 class="text-7xl font-bold uppercase tracking-tighter">${portfolioData.profile.name}</h1>
+                            <p class="text-xl italic mt-4 opacity-80">"${portfolioData.profile.subTagline}"</p>
+                            <div class="flex gap-6 justify-end mt-8">
+                                <a href="mailto:${portfolioData.profile.email}" class="border border-white px-8 py-2 hover:bg-white hover:text-black transition uppercase text-xs">Email</a>
+                                <a href="${portfolioData.profile.cvFilename}" download class="border border-white px-8 py-2 hover:bg-white hover:text-black transition uppercase text-xs">Sourav-CV</a>
+                            </div>
+                        </div>
+                    </div>`;
+            } else if (sectionId === 'about') {
+                main.innerHTML = `
+                    <h2 class="text-4xl uppercase mb-12 text-center">More About Me</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        ${portfolioData.pillars.map(p => `
+                            <div class="card-container">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <img src="${p.image}" class="w-full h-full object-cover opacity-40">
+                                        <div class="absolute bottom-4 left-4 text-xl font-bold uppercase">${p.title}</div>
                                     </div>
-                                    <div class="bento-back p-8">
-                                        <ul class="mono text-xs space-y-3">
-                                            ${pillar.bullets.map(bullet => `<li>— ${bullet}</li>`).join('')}
+                                    <div class="card-back">
+                                        <h4 class="font-bold border-b border-black mb-4 uppercase text-sm">${p.title}</h4>
+                                        <ul class="text-[11px] leading-relaxed space-y-2" style="font-family: 'Times New Roman', serif;">
+                                            ${p.bullets.map(b => `<li>• ${b}</li>`).join('')}
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </section>
-
-                <section id="blog" class="min-h-screen py-24">
-                    <h2 class="text-5xl font-black uppercase tracking-tighter text-center mb-16">Writings</h2>
-                    <div class="space-y-4 max-w-4xl mx-auto">
-                        ${data.accordionSections.map(section => `
-                            <div class="accordion-item border border-neutral-800" onclick="toggleAccordion(this)">
-                                <button class="flex justify-between w-full p-6 text-xl font-bold uppercase tracking-tight mono">
-                                    ${section.title} <span class="mono opacity-60">[+]</span>
-                                </button>
-                                <div class="accordion-content">
-                                    <div class="p-8 border-t border-neutral-800 text-neutral-300 space-y-4">
-                                        ${section.entries.map(entry => `<p>${entry}</p>`).join('')}
-                                    </div>
+                            </div>`).join('')}
+                    </div>`;
+            } else if (sectionId === 'blog') {
+                main.innerHTML = `
+                    <h2 class="text-4xl uppercase mb-12 text-center">Writings</h2>
+                    <div class="max-w-2xl mx-auto space-y-4">
+                        ${['Academics', 'Sports', 'Co-Curricular'].map(cat => {
+                            const key = cat.toLowerCase().replace('-', '');
+                            return `
+                            <div class="border border-white/10" onclick="this.classList.toggle('accordion-active')">
+                                <div class="p-6 cursor-pointer flex justify-between uppercase tracking-widest text-sm bg-white/5">
+                                    ${cat} <span>+</span>
                                 </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </section>
-
-                <section id="contact" class="min-h-screen py-24 contact-form">
-                    <h2 class="text-5xl font-black uppercase tracking-tighter text-center mb-16">Connect</h2>
-                    <form action="https://formspree.io/f/mbdpvyya" method="POST" class="max-w-2xl mx-auto space-y-6 mono uppercase text-sm">
-                        <input type="text" name="name" placeholder="Your Name" required class="w-full p-4">
-                        <input type="email" name="email" placeholder="Your Email" required class="w-full p-4">
-                        <textarea name="message" placeholder="Type Your Message..." rows="6" required class="w-full p-4"></textarea>
-                        <button type="submit" class="w-full border border-white p-4 font-bold uppercase hover:bg-white hover:text-black transition">Send</button>
-                    </form>
-                </section>
-            `;
+                                <div class="accordion-content px-6 italic text-sm opacity-70">
+                                    ${portfolioData.blogs[key].map(post => `<p class="mb-4">${post}</p>`).join('')}
+                                </div>
+                            </div>`;
+                        }).join('')}
+                    </div>`;
+            } else if (sectionId === 'contact') {
+                main.innerHTML = `
+                    <div class="max-w-xl mx-auto py-20 text-center">
+                        <h2 class="text-5xl uppercase mb-8">Get In Touch</h2>
+                        <form action="https://formspree.io/f/YOUR_ID" method="POST" class="space-y-4">
+                            <input name="email" type="email" placeholder="YOUR EMAIL" class="w-full bg-transparent border border-white/20 p-4 text-xs focus:border-white outline-none">
+                            <textarea name="message" placeholder="MESSAGE" class="w-full bg-transparent border border-white/20 p-4 text-xs h-32 focus:border-white outline-none"></textarea>
+                            <button class="w-full border border-white py-4 uppercase text-xs hover:bg-white hover:text-black transition">Submit</button>
+                        </form>
+                    </div>`;
+            }
         }
 
-        // --- INTERACTIVITY LOGIC ---
-        function toggleAccordion(element) {
-            document.querySelectorAll('.accordion-item').forEach(item => {
-                if (item !== element) item.classList.remove('active');
-            });
-            element.classList.toggle('active');
-        }
-
-        // --- THREE.JS GALAXY/PARTICLE BACKGROUND ---
-        function initThreeJS() {
-            const container = document.getElementById('canvas-container');
+        function startParticles() {
             const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({alpha: true});
             renderer.setSize(window.innerWidth, window.innerHeight);
-            container.appendChild(renderer.domElement);
-
-            const points = [];
-            for (let i = 0; i < 2000; i++) {
-                points.push(new THREE.Vector3(THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloatSpread(1000)));
-            }
-            const geometry = new THREE.BufferGeometry().setFromPoints(points);
-            const material = new THREE.PointsMaterial({ color: 0x333333, size: 2 });
-            const particles = new THREE.Points(geometry, material);
-            scene.add(particles);
-
-            camera.position.z = 500;
-            let mouseX = 0, mouseY = 0;
-            document.addEventListener('mousemove', (e) => { mouseX = (e.clientX - window.innerWidth / 2) / 100; mouseY = (e.clientY - window.innerHeight / 2) / 100; });
-
-            function animate() {
-                requestAnimationFrame(animate);
-                particles.rotation.y += 0.0005;
-                camera.position.x += (mouseX - camera.position.x) * 0.05;
-                camera.position.y += (-mouseY - camera.position.y) * 0.05;
-                camera.lookAt(scene.position);
-                renderer.render(scene, camera);
-            }
-            animate();
-            window.addEventListener('resize', () => { camera.aspect = window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+            const stars = new THREE.BufferGeometry();
+            const posArr = new Float32Array(3000);
+            for(let i=0; i<3000; i++) posArr[i] = (Math.random()-0.5)*1000;
+            stars.setAttribute('position', new THREE.BufferAttribute(posArr, 3));
+            const material = new THREE.PointsMaterial({size: 0.7, color: 0xffffff});
+            const mesh = new THREE.Points(stars, material);
+            scene.add(mesh);
+            camera.position.z = 100;
+            function anim() { requestAnimationFrame(anim); mesh.rotation.y += 0.001; renderer.render(scene, camera); }
+            anim();
         }
 
-        // Start the app
-        fetchPortfolioData();
+        init();
     </script>
 </body>
 </html>
