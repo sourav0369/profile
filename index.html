@@ -67,74 +67,74 @@
             }
         }
 
-        function showSection(id) {
-            document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-            document.getElementById(`btn-${id}`).classList.add('active');
-            const main = document.getElementById('main-content');
-            
-            if (id === 'home') {
-                main.innerHTML = `
-                <div class="fade-in">
-                    <div class="mb-32 block overflow-hidden">
-                        <img src="${portfolioData.profile.photo}" class="profile-circle grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl">
-                        <h1 class="text-6xl md:text-8xl font-bold uppercase tracking-tighter leading-none mb-8">${portfolioData.profile.name}</h1>
-                        <p class="text-3xl italic opacity-95 mb-4 leading-snug">
-                            "${portfolioData.profile.subTagline}"
-                        </p>
-                        <p class="text-xl uppercase tracking-[0.2em] opacity-60 mb-10">
-                            Aspiring Researcher. Sports Enthusiast. Leader.
-                        </p>
-                        <div class="flex gap-4">
-                            <a href="mailto:${portfolioData.profile.email}" class="border border-white/30 px-8 py-2 hover:bg-white hover:text-black transition uppercase text-[10px] tracking-widest">Email</a>
-                            <a href="${portfolioData.profile.cvFilename}" download class="border border-white/30 px-8 py-2 hover:bg-white hover:text-black transition uppercase text-[10px] tracking-widest">Sourav-CV</a>
+    function showSection(id) {
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(`btn-${id}`).classList.add('active');
+    const main = document.getElementById('main-content');
+    
+    if (id === 'home') {
+        // ... (Keep your existing home code here)
+        main.innerHTML = `
+        <div class="fade-in">
+            <div class="mb-32 block overflow-hidden">
+                <img src="${portfolioData.profile.photo}" class="profile-circle grayscale hover:grayscale-0 transition-all duration-1000">
+                <h1 class="text-6xl md:text-8xl font-bold uppercase tracking-tighter leading-none mb-8">${portfolioData.profile.name}</h1>
+                <p class="text-3xl italic opacity-95 mb-4 leading-snug">"${portfolioData.profile.subTagline}"</p>
+                <p class="text-xl uppercase tracking-[0.2em] opacity-60 mb-10">Aspiring Researcher. Sports Enthusiast. Leader.</p>
+                <div class="flex gap-4">
+                    <a href="mailto:${portfolioData.profile.email}" class="border border-white/30 px-8 py-2 hover:bg-white hover:text-black transition uppercase text-[10px] tracking-widest">Email</a>
+                    <a href="${portfolioData.profile.cvFilename}" download class="border border-white/30 px-8 py-2 hover:bg-white hover:text-black transition uppercase text-[10px] tracking-widest">Sourav-CV</a>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-20">
+                ${portfolioData.pillars.map(p => `
+                    <div class="card-container">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <img src="${p.image}" class="w-full h-full object-cover opacity-30 grayscale">
+                                <div class="absolute bottom-6 left-6 text-xl font-bold uppercase tracking-widest">${p.title}</div>
+                            </div>
+                            <div class="card-back">
+                                <h4 class="font-bold border-b border-black/10 pb-2 mb-4 uppercase text-[10px] tracking-widest">${p.title}</h4>
+                                <ul class="text-[12px] leading-relaxed space-y-2">
+                                    ${p.bullets.map(b => `<li>• ${b}</li>`).join('')}
+                                </ul>
+                            </div>
                         </div>
+                    </div>`).join('')}
+            </div>
+        </div>`;
+    } else if (id === 'blog') {
+        main.innerHTML = `
+        <div class="max-w-5xl mx-auto py-10 fade-in">
+            <h2 class="text-4xl uppercase mb-16 text-center tracking-[0.3em] opacity-50">Memories</h2>
+            ${Object.keys(portfolioData.blogs).map(key => `
+                <div class="border border-white/10 bg-white/5 mb-6 group" onclick="this.classList.toggle('accordion-active')">
+                    <div class="p-8 cursor-pointer flex justify-between items-center uppercase tracking-[0.2em] text-[10px] hover:bg-white/5">
+                        ${key} <span class="text-lg">+</span>
                     </div>
-
-                    <h2 class="text-center text-[10px] uppercase tracking-[0.6em] opacity-30 mb-12">Foundations</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-20">
-                        ${portfolioData.pillars.map(p => `
-                            <div class="card-container">
-                                <div class="card-inner">
-                                    <div class="card-front">
-                                        <img src="${p.image}" class="w-full h-full object-cover opacity-30 grayscale">
-                                        <div class="absolute bottom-6 left-6 text-xl font-bold uppercase tracking-widest">${p.title}</div>
-                                    </div>
-                                    <div class="card-back">
-                                        <h4 class="font-bold border-b border-black/10 pb-2 mb-4 uppercase text-[10px] tracking-widest">${p.title}</h4>
-                                        <ul class="text-[12px] leading-relaxed space-y-2" style="font-family: 'Times New Roman', serif;">
-                                            ${p.bullets.map(b => `<li>• ${b}</li>`).join('')}
-                                        </ul>
+                    <div class="accordion-content px-8">
+                        <div class="flex flex-col gap-16 py-10">
+                            ${portfolioData.blogs[key].map((memory, index) => `
+                                <div class="flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8">
+                                    <img src="${memory.image}" class="w-64 h-64 object-cover border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
+                                    <div class="flex-1 ${index % 2 === 0 ? 'text-left' : 'text-right'}">
+                                        <h3 class="text-xl font-bold uppercase mb-4 tracking-widest">${memory.title}</h3>
+                                        <p class="italic opacity-70 leading-relaxed text-lg" style="font-family: 'EB Garamond', serif;">
+                                            ${memory.text}
+                                        </p>
                                     </div>
                                 </div>
-                            </div>`).join('')}
+                            `).join('')}
+                        </div>
                     </div>
-                </div>`;
-            } else if (id === 'blog') {
-                main.innerHTML = `
-                <div class="max-w-3xl mx-auto py-10 fade-in">
-                    <h2 class="text-4xl uppercase mb-16 text-center tracking-[0.3em] opacity-50">Writings & Insights</h2>
-                    ${Object.keys(portfolioData.blogs).map(key => `
-                        <div class="border border-white/10 bg-white/5 mb-4 group" onclick="this.classList.toggle('accordion-active')">
-                            <div class="p-8 cursor-pointer flex justify-between items-center uppercase tracking-[0.2em] text-[10px]">
-                                ${key} <span class="text-lg">+</span>
-                            </div>
-                            <div class="accordion-content px-10 italic text-base opacity-70 leading-relaxed">
-                                ${portfolioData.blogs[key].map(post => `<p class="mb-4">${post}</p>`).join('')}
-                            </div>
-                        </div>`).join('')}
-                </div>`;
-            } else if (id === 'contact') {
-                main.innerHTML = `
-                <div class="max-w-xl mx-auto py-20 text-center fade-in">
-                    <h2 class="text-5xl uppercase mb-12 tracking-tighter">Connect</h2>
-                    <form action="https://formspree.io/f/YOUR_ID" method="POST" class="space-y-6">
-                        <input name="email" type="email" placeholder="YOUR EMAIL" class="w-full bg-transparent border-b border-white/20 p-4 text-[10px] tracking-widest focus:border-white outline-none transition">
-                        <textarea name="message" placeholder="MESSAGE" class="w-full bg-transparent border-b border-white/20 p-4 text-[10px] tracking-widest h-32 focus:border-white outline-none transition"></textarea>
-                        <button class="w-full border border-white/20 py-5 uppercase text-[10px] tracking-[0.3em] hover:bg-white hover:text-black transition">Send Message</button>
-                    </form>
-                </div>`;
-            }
-        }
+                </div>
+            `).join('')}
+        </div>`;
+    } else if (id === 'contact') {
+        // ... (Keep your existing contact code here)
+    }
+}
 
         function startParticles() {
             const container = document.getElementById('canvas-container');
