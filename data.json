@@ -48,52 +48,66 @@
       "bullets": [
         "Managed ₹50,000 budget as a Gym treasurer (2024-2025)",
         "Student Representative in the Disciplinary Action Committee for Studenys (2025)",
-        "Finalist of BENSPARK Ideathon, IISER Pune",
+        "Final finalist of BENSPARK Ideathon, IISER Pune",
         "Inter-bacth Group Dance Competetion Winner (2024,2025)"
       ]
     }
   ],
-"blogs": {
-  "academics": [
+  "servers": [
     {
-      "title": "Attended PK Parija Lecture on Cancer Metastasis by Dr. Rajendra Achyut Badwe",
-      "image": "PKparija4.jpeg",
-      "text": "Did you know that removing metastasis can actually facilitate micrometastasis? Got the Opportunity to be a part of an amazing lecture where Dr. Badwe adressed the metastasis research through a Clinician's perspective."
+      "name": "qPCR AAS",
+      "description": "Tired of using slow excel pipeline for your qPCR results? Use our qPCR AAS server to do it within seconds.",
+      "link": "https://qpcr-analysis-tool-ukggjysfk76tu23tfmsjza.streamlit.app/#q-pcr-analysis-engine",
+      "version": "v1.0.0"
     },
     {
-      "title": "9th Semester Poster Presentation",
-      "image": "Posterpres.jpeg",
-      "text": "If you can't explain it to a fourteen years old, you don't know it yourself!! It was an amazing experience to showcase the MSc research project in front of faculty members from different departments and lovely juniors. "
-   },
-    {
-      "title": "36th Mid year Meeting at Indian Academy of Sciences",
-      "image": "IASmeeting.jpeg",
-      "text": "Finally, got the opportunity to meet a living legend!! During my research project at RRMCH(Bengaluru), I was invited to the mid year meeting at IISC, where I got the opportunity to interact with Dr. A S Kiran Kumar (former Chairperson ISRO), while networking with amazing researchers."
+      "name": "DBN Analysis Pro",
+      "description": "Have the proteomics and genomics data but don't know the best target? Say hello to DBN analysis pro.",
+      "link": "https://dbn-server-vybqwt99c4drtzdnq9o8my.streamlit.app/",
+      "version": "v1.0.0"
     }
   ],
-  "sports": [
-    {
-      "title": "Interbatch Badminton 2025",
-      "image": "badminton.jpeg",
-      "text": "Last win of the year, won third prize in the Interbatch Badminton tournament December 2025. Attacking isn't always the best strategy against Pros!!"
-    },
-    {
-      "title": "Powerlifting Competetion",
-      "image": "PLift.jpeg",
-      "text": "Its that time of the year!! Organized Power lifting competetion in the Institute as a core committee member, while also motivating new gym buddies(juniors). Hopefully they show up regularly"
-    }
-  ],
-  "cocurricular": [
-    {
-      "title": "Group Dance Winners 2025",
-      "image": "dancegroup.jpeg",
-      "text": "First time it felt nice, so we had to do it twice!! Won the Interbatch Group Dance Competetion. The memories we make during practice sessions are surely going to stay with me till the end."
-    },
-    {
-      "title": "Slogan Writing Winner 2025",
-      "image": "Slogan.jpeg",
-      "text": "Writing slogans has become a part of me. It just genuinely feels good to spread awareness and positivity through slogans."
-    }
-  ]
- }
+  "blogs": {
+    "academics": [
+      {
+        "title": "Attended PK Parija Lecture on Cancer Metastasis by Dr. Rajendra Achyut Badwe",
+        "image": "PKparija4.jpeg",
+        "text": "Did you know that removing metastasis can actually facilitate micrometastasis? Got the Opportunity to be a part of an amazing lecture where Dr. Badwe adressed the metastasis research through a Clinician's perspective."
+      },
+      {
+        "title": "9th Semester Poster Presentation",
+        "image": "Posterpres.jpeg",
+        "text": "If you can't explain it to a fourteen years old, you don't know it yourself!! It was an amazing experience to showcase the MSc research project in front of faculty members from different departments and lovely juniors. "
+      },
+      {
+        "title": "36th Mid year Meeting at Indian Academy of Sciences",
+        "image": "IASmeeting.jpeg",
+        "text": "Finally, got the opportunity to meet a living legend!! During my research project at RRMCH(Bengaluru), I was invited to the mid year meeting at IISC, where I got the opportunity to interact with Dr. A S Kiran Kumar (former Chairperson ISRO), while networking with amazing researchers."
+      }
+    ],
+    "sports": [
+      {
+        "title": "Interbatch Badminton 2025",
+        "image": "badminton.jpeg",
+        "text": "Last win of the year, won third prize in the Interbatch Badminton tournament December 2025. Attacking isn't always the best strategy against Pros!!"
+      },
+      {
+        "title": "Powerlifting Competetion",
+        "image": "PLift.jpeg",
+        "text": "Its that time of the year!! Organized Power lifting competetion in the Institute as a core committee member, while also motivating new gym buddies(juniors). Hopefully they show up regularly"
+      }
+    ],
+    "cocurricular": [
+      {
+        "title": "Group Dance Winners 2025",
+        "image": "dancegroup.jpeg",
+        "text": "First time it felt nice, so we had to do it twice!! Won the Interbatch Group Dance Competetion. The memories we make during practice sessions are surely going to stay with me till the end."
+      },
+      {
+        "title": "Slogan Writing Winner 2025",
+        "image": "Slogan.jpeg",
+        "text": "Writing slogans has become a part of me. It just genuinely feels good to spread awareness and positivity through slogans."
+      }
+    ]
+  }
 }
