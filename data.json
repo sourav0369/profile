@@ -56,7 +56,7 @@
   "servers": [
     {
       "name": "qPCR AAS",
-      "description": "Tired of using slow excel pipeline for your qPCR results? Use our qPCR AAS server to do it within seconds.",
+      "description": "Tired of using slow excel pipeline for your qPCR results? Use our qPCR AAS tool to do it within seconds.",
       "link": "https://qpcr-analysis-tool-ukggjysfk76tu23tfmsjza.streamlit.app/#q-pcr-analysis-engine",
       "version": "v1.0.0"
     },
@@ -101,7 +101,7 @@
       {
         "title": "Group Dance Winners 2025",
         "image": "dancegroup.jpeg",
-        "text": "First time it felt nice, so we had to do it twice!! Won the Interbatch Group Dance Competetion. The memories we make during practice sessions are surely going to stay with me till the end."
+        "text": "First time it felt nice, so we had to do it twice!! Won the Interbatch Group Dance Competetion. The memories we made during practice sessions are surely going to stay with me till the end."
       },
       {
         "title": "Slogan Writing Winner 2025",
