@@ -14,7 +14,7 @@
       "image": "pipette.jpeg",
       "bullets": [
         "Integrated Master's of Science in Biology with a Minor degree in Chemistry, NISER '26",
-        "Current CGPA: 8.37 | Last semester SGPA: 9.82",
+        "Current CGPA: 8.40",
         "12th Boards: 94.6% | 10th Boards: 93.2%",
         "Competative Exams: NEST (AIR 263), GATE (AIR 1173), OJEE (State Rank 3), OUAT (AIR 81)"
       ]
@@ -69,6 +69,11 @@
   ],
   "blogs": {
     "academics": [
+      {
+        "title": "Defending Master's thesis felt great",
+        "image": "Master's_thesis_pic.jpeg",
+        "text": "Explaining your project in front of professors definitely makes all the sleepless nights worth it. Will forever be grateful to Dr. Badiree for his personal as well as professional guidance."
+      },
       {
         "title": "Attended PK Parija Lecture on Cancer Metastasis by Dr. Rajendra Achyut Badwe",
         "image": "PKparija4.jpeg",
