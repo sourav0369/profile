@@ -91,12 +91,11 @@
         }
 
         function showSection(id) {
-            // Update Navigation Highlighting
             document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
             document.getElementById(`btn-${id}`).classList.add('active');
             
             const main = document.getElementById('main-content');
-            window.scrollTo(0, 0); // Reset scroll to top on page change
+            window.scrollTo(0, 0);
             
             if (id === 'home') {
                 main.innerHTML = `
@@ -188,11 +187,28 @@
                 main.innerHTML = `
                 <div class="max-w-xl mx-auto py-10 text-center fade-in">
                     <h2 class="text-5xl uppercase mb-12 tracking-tighter">Get In Touch</h2>
-                    <form action="https://formspree.io/f/mbdpvyya" method="POST" class="space-y-6">
+                    <form action="https://formspree.io/f/mbdpvyya" method="POST" class="space-y-6 mb-16">
                         <input name="email" type="email" placeholder="YOUR EMAIL" class="w-full bg-transparent border-b border-white/20 p-4 text-[10px] tracking-widest outline-none">
                         <textarea name="message" placeholder="MESSAGE" class="w-full bg-transparent border-b border-white/20 p-4 text-[10px] tracking-widest h-32 outline-none"></textarea>
                         <button class="w-full border border-white/20 py-5 uppercase text-[10px] tracking-[0.3em] hover:bg-white hover:text-black transition">Send Message</button>
                     </form>
+
+                    <div class="border-t border-white/10 pt-12">
+                        <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-8">Or Connect Via</p>
+                        <div class="flex justify-center gap-6">
+                            <a href="https://instagram.com/sOurav_3?igsh=M21mMW85MnZiMmE2" target="_blank" class="w-32 h-32 border border-white/20 bg-white/5 flex flex-col justify-center items-center gap-2 group relative overflow-hidden transition-all duration-300 hover:border-pink-500 hover:scale-105 rounded-xl">
+                                <span class="text-3xl filter grayscale group-hover:grayscale-0 transition duration-300">📸</span>
+                                <span class="text-[10px] tracking-widest uppercase font-sans text-white/70 group-hover:text-white">Instagram</span>
+                                <div class="absolute inset-0 bg-gradient-to-tr from-yellow-500/10 via-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </a>
+
+                            <a href="https://in.linkedin.com/in/sourav-pattanaik-320b31346" target="_blank" class="w-32 h-32 border border-white/20 bg-white/5 flex flex-col justify-center items-center gap-2 group relative overflow-hidden transition-all duration-300 hover:border-blue-500 hover:scale-105 rounded-xl">
+                                <span class="text-3xl filter grayscale group-hover:grayscale-0 transition duration-300">💼</span>
+                                <span class="text-[10px] tracking-widest uppercase font-sans text-white/70 group-hover:text-white">LinkedIn</span>
+                                <div class="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </a>
+                        </div>
+                    </div>
                 </div>`;
             }
         }
