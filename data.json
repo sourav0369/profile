@@ -1,7 +1,7 @@
 {
   "profile": {
     "name": "Sourav Pattanaik",
-    "tagline": "Aspiring Researcher. Sports Enthusiast. Leader.",
+    "tagline": "Computational Biology Researcher. Sports Enthusiast. Leader.",
     "subTagline": "I use the lens of bioinformatics to study Biological Phenomena.",
     "cvFilename": "Sourav-CV.pdf",
     "email": "sourav.pattanaik@niser.ac.in",
@@ -26,7 +26,7 @@
       "bullets": [
         "Published article on Multi-epitope vaccine design against structural proteins of Langya Virus",
         "Research project on Sepsis early diagnosis supported by the IAS",
-        "Computational Discovery of novel treatment strategy for Testicular Cancer",
+        "Best Poster Award for Computational Discovery of novel treatment strategy for Testicular Cancer",
         "Recieved Support of ₹4 lakh for Int. MSc program through DAE-DISHA Scholarship (2021-2026)",
         "Check my CV for other achievements and stay tuned for more cool updates"
       ]
@@ -56,7 +56,7 @@
   "servers": [
     {
       "name": "qPCR AAS",
-      "description": "Tired of using slow excel pipeline for your qPCR results? Use our qPCR AAS tool to do it within seconds.",
+      "description": "Tired of using slow EXCEL pipeline for your qPCR results? Use our qPCR AAS tool to do it within seconds.",
       "link": "https://qpcr-analysis-tool-ukggjysfk76tu23tfmsjza.streamlit.app/#q-pcr-analysis-engine",
       "version": "v1.0.0"
     },
@@ -70,6 +70,11 @@
   "blogs": {
     "academics": [
       {
+        "title": "Best Poster Presentation Award",
+        "image": "Posterpres.jpeg",
+        "text": "It was an amazing experience to present my MSc research project in front of scientists who share similar research interests. I was also honored to recieve the Best Poster Award at the IndiBioCom 2026 conference. "
+      },
+      {
         "title": "Defending Master's thesis felt great",
         "image": "Master's_thesis_pic.jpg",
         "text": "Defended. 🎓 Every late night in the lab was worth it to see the research come together. Endless gratitude to Dr. Badireenath for the exceptional mentorship and guidance."
@@ -78,11 +83,6 @@
         "title": "Attended PK Parija Lecture on Cancer Metastasis by Dr. Rajendra Achyut Badwe",
         "image": "PKparija4.jpeg",
         "text": "Did you know that removing tumors can actually facilitate micrometastasis? Got the Opportunity to be a part of an amazing lecture where Dr. Badwe adressed the metastasis research through a Clinician's perspective."
-      },
-      {
-        "title": "9th Semester Poster Presentation",
-        "image": "Posterpres.jpeg",
-        "text": "If you can't explain it to a fourteen years old, you don't know it yourself!! It was an amazing experience to showcase the MSc research project in front of faculty members from different departments and lovely juniors. "
       },
       {
         "title": "36th Mid year Meeting at Indian Academy of Sciences",
